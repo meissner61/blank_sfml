@@ -1,0 +1,9 @@
+#Folders
+bin/
+build/
+intermediate/
+
+
+#Executables
+*.exe
+
