@@ -6,4 +6,4 @@ intermediate/
 
 #Executables
 *.exe
-
+*.obj

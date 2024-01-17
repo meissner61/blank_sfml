@@ -3,10 +3,13 @@ title %cd%
 call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars32.bat"
 
 ::INCLUDE DIRECTORIES
-set SFML="C:\libs\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include"
+set SFML="C:\libs\SFML-2.6.1\include"
 
 ::LIBRARY DIRECTORIES
-set SFML_lib="C:\libs\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\lib"
+set SFML_lib="C:\libs\SFML-2.6.1\lib"
+
+
+call mkdir ..\bin\
 
 
 
