@@ -1,10 +1,24 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "Snake.h"
+#include "World.h"
+
 
 using namespace std;
 
 void WindowCollision(sf::Sprite& ball, sf::Vector2f& increment, sf::Vector2u& ball_size, sf::RenderWindow& window);
+
+
+    World world(sf::Vector2u(800,600));
+    Snake snek(16);
+
+    // sf::Clock clok;
+    // sf::Time tim = clok.getElapsedTime();
+
+    // float m_elapsed = tim.asSeconds();
+
+
 
 int main()
 {
@@ -18,7 +32,8 @@ int main()
 
     //ballTexture.getSize().x
 
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(30);
+    //window.setVerticalSyncEnabled(true);
 
     //ball.setOrigin(size.x / 2, size.y / 2);
 
@@ -38,6 +53,9 @@ int main()
 
     //ball.setColor(sf::Color(40,20,255,255));
 
+
+    
+
     while(window.isOpen())
     {
         sf::Event sfEvent;
@@ -51,16 +69,56 @@ int main()
             if (sfEvent.type == sf::Event::Resized)
             {
                 // update the view to the new size of the window
-                sf::FloatRect visibleArea(0, 0, sfEvent.size.width, sfEvent.size.height);
+                sf::FloatRect visibleArea((float)0, (float)0, (float)sfEvent.size.width, (float)sfEvent.size.height);
                 window.setView(sf::View(visibleArea));
+            }
+
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && snek.GetDirection() != Direction::Down)
+            {
+                snek.SetDirection(Direction::Up);
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && snek.GetDirection() != Direction::Up)
+            {
+                snek.SetDirection(Direction::Down);
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && snek.GetDirection() != Direction::Right)
+            {
+                snek.SetDirection(Direction::Left);
+            }
+            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && snek.GetDirection() != Direction::Left)
+            {
+                snek.SetDirection(Direction::Right);
             }
         }
 
+        float timestep = 1.0f / snek.GetSpeed();
+
+        snek.Tick();
+        world.Update(snek);
+        if(snek.HasLost())
+        {
+            snek.Reset();
+        }
+
+
+        // if(m_elapsed >= timestep)
+        // {
+        //     snek.Tick();
+        //     world.Update(snek);
+        //     m_elapsed -= timestep;
+        //     if(snek.HasLost())
+        //     {
+        //         snek.Reset();
+        //     }
+        // }
+
+
         WindowCollision(ball, increment, ball_size, window);
 
+        //puts("TEST");
 
-
-        
+        world.Render(window);
+        snek.Render(window);
 
         ball.setPosition(ball.getPosition() + increment);
 
