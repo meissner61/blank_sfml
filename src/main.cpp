@@ -8,6 +8,11 @@ void WindowCollision(sf::Sprite& ball, sf::Vector2f& increment, sf::Vector2u& ba
 
 int main()
 {
+    sf::Clock clock; // Starts the clock
+
+    sf::Time elapsed = clock.getElapsedTime(); // Get the elapsed time
+
+    std::cout << "Elapsed time: " << elapsed.asSeconds() << " seconds\n";
     
     sf::RenderWindow window(sf::VideoMode(800,600), "First Window!!!");
 
@@ -68,6 +73,9 @@ int main()
         window.display();
         window.clear(sf::Color(50,50,50,255));
     }
+
+    elapsed = clock.getElapsedTime(); // Get the elapsed time
+    std::cout << "Elapsed time: " << elapsed.asSeconds() << " seconds\n";
 
 }
 
