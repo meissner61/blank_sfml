@@ -20,6 +20,9 @@ void WindowCollision(sf::Sprite& ball, sf::Vector2f& increment, sf::Vector2u& ba
 
 
 
+
+
+
 int main()
 {
     
@@ -53,6 +56,9 @@ int main()
 
     //ball.setColor(sf::Color(40,20,255,255));
 
+    sf::Clock clock;
+
+    sf::Time elapsed = clock.getElapsedTime();
 
     
 
@@ -99,6 +105,8 @@ int main()
         {
             snek.Reset();
         }
+
+        std::cout << "Seconds since start: " << elapsed.asMicroseconds() <<  std::endl;
 
 
         // if(m_elapsed >= timestep)
