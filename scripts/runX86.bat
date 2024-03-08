@@ -1,0 +1,2 @@
+
+call "../bin/main.exe"
