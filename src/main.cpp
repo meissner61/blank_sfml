@@ -35,7 +35,7 @@ int main()
 
     //ballTexture.getSize().x
 
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(15);
     //window.setVerticalSyncEnabled(true);
 
     //ball.setOrigin(size.x / 2, size.y / 2);
@@ -105,7 +105,8 @@ int main()
         {
             snek.Reset();
         }
-
+        
+        elapsed = clock.getElapsedTime();
         std::cout << "Seconds since start: " << elapsed.asMicroseconds() <<  std::endl;
 
 
