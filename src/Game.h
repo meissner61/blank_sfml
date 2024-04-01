@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "Window.h"
 
 
 class Game
@@ -8,6 +9,9 @@ class Game
 
 
 public:
+
+    Game();
+    ~Game();
 
     void Setup();
 
@@ -22,6 +26,7 @@ public:
 
 private:
 
+    Window m_window;
     
 
 
