@@ -110,11 +110,11 @@ int main()
         std::cout << "Seconds since start: " << elapsed.asMicroseconds() <<  std::endl;
 
 
-        // if(m_elapsed >= timestep)
+        // if(elapsed >= timestep)
         // {
         //     snek.Tick();
         //     world.Update(snek);
-        //     m_elapsed -= timestep;
+        //     elapsed -= timestep;
         //     if(snek.HasLost())
         //     {
         //         snek.Reset();
