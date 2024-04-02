@@ -1,8 +1,7 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
-#include "Snake.h"
-#include "World.h"
+
+#include "Game.h"
 
 
 using namespace std;
@@ -10,8 +9,7 @@ using namespace std;
 void WindowCollision(sf::Sprite& ball, sf::Vector2f& increment, sf::Vector2u& ball_size, sf::RenderWindow& window);
 
 
-    World world(sf::Vector2u(800,600));
-    Snake snek(16);
+
 
     // sf::Clock clok;
     // sf::Time tim = clok.getElapsedTime();
@@ -19,14 +17,21 @@ void WindowCollision(sf::Sprite& ball, sf::Vector2f& increment, sf::Vector2u& ba
     // float m_elapsed = tim.asSeconds();
 
 
-
+    Game game;
 
 
 
 int main()
 {
+
+    while(!game.GetWindow()->IsDone())
+    {
+        game.Input();
+        game.Update();
+        game.Render();
+    }
+
     
-    sf::RenderWindow window(sf::VideoMode(800,600), "First Window!!!");
 
     sf::Texture ballTexture;
     ballTexture.loadFromFile("../data/ball.png");
@@ -35,7 +40,7 @@ int main()
 
     //ballTexture.getSize().x
 
-    window.setFramerateLimit(15);
+    //window.setFramerateLimit(15);
     //window.setVerticalSyncEnabled(true);
 
     //ball.setOrigin(size.x / 2, size.y / 2);
@@ -48,9 +53,7 @@ int main()
     ball.setPosition(0,0);
 
     ball.getTextureRect();
-    
-    cout << "Windows size.x(): " << window.getSize().x << "\n";
-    cout << "Windows size.y(): " << window.getSize().y << "\n";
+
 
     cout << "size.x: " << ball_size.x << "\n";
 
@@ -62,79 +65,79 @@ int main()
 
     
 
-    while(window.isOpen())
-    {
-        sf::Event sfEvent;
-        while(window.pollEvent(sfEvent))
-        {
-            if(sfEvent.type == sf::Event::Closed)
-            {
-                window.close();
-            }
+    // while(window.isOpen())
+    // {
+    //     sf::Event sfEvent;
+    //     while(window.pollEvent(sfEvent))
+    //     {
+    //         if(sfEvent.type == sf::Event::Closed)
+    //         {
+    //             window.close();
+    //         }
 
-            if (sfEvent.type == sf::Event::Resized)
-            {
-                // update the view to the new size of the window
-                sf::FloatRect visibleArea((float)0, (float)0, (float)sfEvent.size.width, (float)sfEvent.size.height);
-                window.setView(sf::View(visibleArea));
-            }
+    //         if (sfEvent.type == sf::Event::Resized)
+    //         {
+    //             // update the view to the new size of the window
+    //             sf::FloatRect visibleArea((float)0, (float)0, (float)sfEvent.size.width, (float)sfEvent.size.height);
+    //             window.setView(sf::View(visibleArea));
+    //         }
 
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && snek.GetDirection() != Direction::Down)
-            {
-                snek.SetDirection(Direction::Up);
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && snek.GetDirection() != Direction::Up)
-            {
-                snek.SetDirection(Direction::Down);
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && snek.GetDirection() != Direction::Right)
-            {
-                snek.SetDirection(Direction::Left);
-            }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && snek.GetDirection() != Direction::Left)
-            {
-                snek.SetDirection(Direction::Right);
-            }
-        }
+    //         // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && snek.GetDirection() != Direction::Down)
+    //         // {
+    //         //     snek.SetDirection(Direction::Up);
+    //         // }
+    //         // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && snek.GetDirection() != Direction::Up)
+    //         // {
+    //         //     snek.SetDirection(Direction::Down);
+    //         // }
+    //         // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && snek.GetDirection() != Direction::Right)
+    //         // {
+    //         //     snek.SetDirection(Direction::Left);
+    //         // }
+    //         // else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && snek.GetDirection() != Direction::Left)
+    //         // {
+    //         //     snek.SetDirection(Direction::Right);
+    //         // }
+    //     }
 
-        float timestep = 1.0f / snek.GetSpeed();
+    //     // float timestep = 1.0f / snek.GetSpeed();
 
-        snek.Tick();
-        world.Update(snek);
-        if(snek.HasLost())
-        {
-            snek.Reset();
-        }
+    //     // snek.Tick();
+    //     // world.Update(snek);
+    //     // if(snek.HasLost())
+    //     // {
+    //     //     snek.Reset();
+    //     // }
         
-        elapsed = clock.getElapsedTime();
-        std::cout << "Seconds since start: " << elapsed.asMicroseconds() <<  std::endl;
+    //     elapsed = clock.getElapsedTime();
+    //     std::cout << "Seconds since start: " << elapsed.asMicroseconds() <<  std::endl;
 
 
-        // if(elapsed >= timestep)
-        // {
-        //     snek.Tick();
-        //     world.Update(snek);
-        //     elapsed -= timestep;
-        //     if(snek.HasLost())
-        //     {
-        //         snek.Reset();
-        //     }
-        // }
+    //     // if(elapsed >= timestep)
+    //     // {
+    //     //     snek.Tick();
+    //     //     world.Update(snek);
+    //     //     elapsed -= timestep;
+    //     //     if(snek.HasLost())
+    //     //     {
+    //     //         snek.Reset();
+    //     //     }
+    //     // }
 
 
-        WindowCollision(ball, increment, ball_size, window);
+    //     WindowCollision(ball, increment, ball_size, window);
 
-        //puts("TEST");
+    //     //puts("TEST");
 
-        world.Render(window);
-        snek.Render(window);
+    //     world.Render(window);
+    //     snek.Render(window);
 
-        ball.setPosition(ball.getPosition() + increment);
+    //     ball.setPosition(ball.getPosition() + increment);
 
-        window.draw(ball);
-        window.display();
-        window.clear(sf::Color(50,50,50,255));
-    }
+    //     window.draw(ball);
+    //     window.display();
+    //     window.clear(sf::Color(50,50,50,255));
+    // }
 
 }
 
