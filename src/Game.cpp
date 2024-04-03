@@ -2,6 +2,9 @@
 
 Game::Game() : m_window("Win Title", {800,600}), m_world({800,600}), m_snek(16)
 {
+    m_clock.restart();
+
+    m_elapsed = 0.0f;
 }
 
 Game::~Game()
@@ -41,12 +44,24 @@ void Game::Update()
     m_window.Update();
 
     float timestep = 1.0f / m_snek.GetSpeed();
+//MINE
+    // m_snek.Tick();
+    // m_world.Update(m_snek);
+    // if(m_snek.HasLost())
+    // {
+    //     m_snek.Reset();
+    // }
+//  END OF MINE
 
-    m_snek.Tick();
-    m_world.Update(m_snek);
-    if(m_snek.HasLost())
+    if(m_elapsed >= timestep)
     {
-        m_snek.Reset();
+        m_snek.Tick();
+        m_world.Update(m_snek);
+        m_elapsed -= timestep;
+        if(m_snek.HasLost())
+        {
+            m_snek.Reset();
+        }
     }
 }
 
@@ -58,6 +73,11 @@ void Game::Render()
     m_snek.Render(*m_window.GetRenderWindow());
     //m_window.Draw();
     m_window.EndDraw();
+}
+
+void Game::RestartClock()
+{
+    m_elapsed += m_clock.restart().asSeconds();
 }
 
 Window *Game::GetWindow()

@@ -23,6 +23,9 @@ public:
     void Update();
     void Render();
 
+    sf::Time GetElapsed();
+    void RestartClock();
+
     Window* GetWindow();
 
 
@@ -31,7 +34,9 @@ public:
 private:
 
     Window m_window;
-    
+    sf::Clock m_clock;
+    float m_elapsed;
+
     World m_world;//(sf::Vector2u(800,600));
     Snake m_snek;//(16);
 
