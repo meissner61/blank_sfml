@@ -5,6 +5,12 @@ Game::Game() : m_window("Win Title", {800,600}), m_world({800,600}), m_snek(16)
     m_clock.restart();
 
     m_elapsed = 0.0f;
+
+    m_textbox.Setup(5,14,350,sf::Vector2f(225,0));
+    m_textbox.Add("Test");
+    m_textbox.Add("Test");
+    m_textbox.Add("Test");
+
 }
 
 Game::~Game()
@@ -42,6 +48,7 @@ void Game::Input()
 void Game::Update()
 {
     m_window.Update();
+    
 
     float timestep = 1.0f / m_snek.GetSpeed();
 //MINE
@@ -71,6 +78,7 @@ void Game::Render()
 
     m_world.Render(*m_window.GetRenderWindow());
     m_snek.Render(*m_window.GetRenderWindow());
+    m_textbox.Render(*m_window.GetRenderWindow());
     //m_window.Draw();
     m_window.EndDraw();
 }

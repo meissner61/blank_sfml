@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Snake.h"
 #include "World.h"
+#include "Textbox.h"
 
 
 class Game
@@ -39,6 +40,8 @@ private:
 
     World m_world;//(sf::Vector2u(800,600));
     Snake m_snek;//(16);
+
+    Textbox m_textbox;
 
 
 };
