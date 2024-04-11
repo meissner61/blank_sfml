@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : m_window("Win Title", {800,600}), m_world({800,600}), m_snek(16)
+Game::Game() : m_window("Input Chapter", {800,600}), m_world({800,600}), m_snek(16)
 {
     m_clock.restart();
 
