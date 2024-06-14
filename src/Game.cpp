@@ -43,6 +43,12 @@ void Game::Input()
     {
         m_snek.SetDirection(Direction::Right);
     }
+
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        m_textbox.Add("W Pressed");
+    }
 }
 
 void Game::Update()
