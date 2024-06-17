@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "EventManager.h"
+
 class Window
 {
 
@@ -25,7 +27,12 @@ public:
     sf::RenderWindow* GetRenderWindow();
 
 
-    void ToggleFullScreen();
+    bool isFocused();
+    EventManager* GetEventManager();
+
+
+    void ToggleFullScreen(EventDetails* l_details);
+    void Close(EventDetails* l_details = nullptr);
 
     void Draw(sf::Drawable& drawable);
     
@@ -40,5 +47,8 @@ private:
     std::string m_windowTitle;
     bool m_isDone;
     bool m_isFullscreen;
+
+    EventManager m_eventManager;
+    bool m_isFocused;
 
 };
