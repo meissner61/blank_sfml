@@ -18,7 +18,7 @@ void Textbox::Setup(int visible, int charSize, int width, sf::Vector2f screenPos
 {
     m_numVisible = visible;
     sf::Vector2f l_offset(2.0f, 2.0f);
-    m_font.loadFromFile("arial.ttf");
+    m_font.loadFromFile("../data/arial.ttf");
     m_content.setFont(m_font);
     m_content.setString("");
     m_content.setCharacterSize(charSize);

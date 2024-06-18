@@ -111,7 +111,7 @@ public:
     {
         m_callbacks.erase(l_name);
     }
-    void HandleEvent(const sf::Event& l_event);
+    void HandleEvent(sf::Event& l_event);
     void Update();
 
     sf::Vector2i GetMousePos(sf::RenderWindow* l_wind = nullptr)

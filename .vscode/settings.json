@@ -51,6 +51,12 @@
         "xloctime": "cpp",
         "xmemory": "cpp",
         "xstddef": "cpp",
-        "xtr1common": "cpp"
+        "xtr1common": "cpp",
+        "fstream": "cpp",
+        "functional": "cpp",
+        "list": "cpp",
+        "sstream": "cpp",
+        "unordered_map": "cpp",
+        "xhash": "cpp"
     }
 }

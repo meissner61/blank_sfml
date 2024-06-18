@@ -46,10 +46,10 @@ bool EventManager::RemoveBinding(std::string l_name)
 
 void EventManager::SetFocus(const bool &l_focus)
 {
-
+    m_hasFocus = l_focus;
 }
 
-void EventManager::HandleEvent(const sf::Event &l_event)
+void EventManager::HandleEvent(sf::Event &l_event)
 {
     //handling SFML events
     for(auto& b_itr : m_bindings) //binding iterator
@@ -176,7 +176,7 @@ void EventManager::LoadBindings()
     std::string delimiter = ":";
 
     std::ifstream bindings;
-    bindings.open("keys.cfg");
+    bindings.open("../data/keys.cfg");
     if(!bindings.is_open())
     {
         std::cout<<"Failed loading keys.cfg." << std::endl;

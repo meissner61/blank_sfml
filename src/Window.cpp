@@ -34,11 +34,13 @@ void Window::Update()
         {
             m_isFocused = false;
             m_eventManager.SetFocus(false);
+            puts("Lost Focus");
         }
         else if(event.type == sf::Event::GainedFocus)
         {
             m_isFocused = true;
             m_eventManager.SetFocus(true);
+            puts("Gained Focus");
         }
         // else if(event.type == sf::Event::Closed)
         // {
@@ -63,6 +65,11 @@ bool Window::IsFullscreen()
     return m_isFullscreen;
 }
 
+bool Window::isFocused()
+{
+    return m_isFocused;
+}
+
 sf::Vector2u Window::GetWindowSize()
 {
     return m_windowSize;
@@ -71,6 +78,11 @@ sf::Vector2u Window::GetWindowSize()
 sf::RenderWindow *Window::GetRenderWindow()
 {
     return &m_window;
+}
+
+EventManager *Window::GetEventManager()
+{
+    return &m_eventManager;
 }
 
 void Window::ToggleFullScreen(EventDetails* l_details)
