@@ -76,41 +76,43 @@ void EventManager::HandleEvent(sf::Event &l_event)
                     ++(bind->c);
                     break;
                 }
-                else if(sfmlEvent == EventType::MButtonDown || sfmlEvent == EventType::MButtonDown)
+            }
+            else if(sfmlEvent == EventType::MButtonDown || sfmlEvent == EventType::MButtonDown)
+            {
+                if(e_itr.second.m_code == l_event.mouseButton.button)
                 {
-                    if(e_itr.second.m_code == l_event.mouseButton.button)
+                    //matching event/keystroke
+                    //increase count
+                    bind->m_details.m_mouse.x = l_event.mouseButton.x;
+                    bind->m_details.m_mouse.y = l_event.mouseButton.y;
+                    if(bind->m_details.m_keyCode != -1)
                     {
-                        //matching event/keystroke
-                        //increase count
-                        bind->m_details.m_mouse.x = l_event.mouseButton.x;
-                        bind->m_details.m_mouse.y = l_event.mouseButton.y;
-                        if(bind->m_details.m_keyCode != -1)
-                        {
-                            bind->m_details.m_keyCode = e_itr.second.m_code;
-                        }
-                        ++(bind->c);
-                        break;
+                        bind->m_details.m_keyCode = e_itr.second.m_code;
                     }
-                    else
-                    {
-                        //no need for addition checking
-                        if(sfmlEvent == EventType::MouseWheel)
-                        {
-                            bind->m_details.m_mouseWheelDelta = l_event.mouseWheel.delta;
-                        }
-                        else if(sfmlEvent == EventType::WindowResized)
-                        {
-                            bind->m_details.m_size.x = l_event.size.width;
-                            bind->m_details.m_size.y = l_event.size.height;
-                        }
-                        else if(sfmlEvent == EventType::TextEntered)
-                        {
-                            bind->m_details.m_textEntered = l_event.text.unicode;
-                        }
-                        ++(bind->c);
-                    }
+                    ++(bind->c);
+                    break;
                 }
             }
+            else
+            {
+                //no need for addition checking
+                if(sfmlEvent == EventType::MouseWheel)
+                {
+                    bind->m_details.m_mouseWheelDelta = l_event.mouseWheel.delta;
+                }
+                else if(sfmlEvent == EventType::WindowResized)
+                {
+                    bind->m_details.m_size.x = l_event.size.width;
+                    bind->m_details.m_size.y = l_event.size.height;
+                }
+                else if(sfmlEvent == EventType::TextEntered)
+                {
+                    bind->m_details.m_textEntered = l_event.text.unicode;
+                }
+                ++(bind->c);
+            }
+                
+            
         }
     }
 }
@@ -164,10 +166,11 @@ void EventManager::Update()
                 }
             }
 
-            bind->c = 0;
-            bind->m_details.Clear();
+
 
         }
+        bind->c = 0;
+        bind->m_details.Clear();
     }
 }
 
