@@ -64,6 +64,7 @@ void EventManager::HandleEvent(sf::Event &l_event)
             }
             if(sfmlEvent == EventType::KeyDown || sfmlEvent == EventType::KeyUp)
             {
+                //puts("Keydown or KeyUP Event Fired");
                 if(e_itr.second.m_code == l_event.key.code)
                 {
                     //matching event/keystroke
@@ -190,8 +191,13 @@ void EventManager::LoadBindings()
     {
         std::stringstream keystream(line);
         std::string callbackName;
+        
         keystream >> callbackName;
+        std::cout << "Callback name: " << callbackName << std::endl;
+
         Binding* bind = new Binding(callbackName);
+        std::cout << "Bind info:\n" << bind->m_name <<'\n' << bind->m_details.m_keyCode; //'\n' << bind->m_details.m_size << std::endl;
+        
         while(!keystream.eof())
         {
             std::string keyval;

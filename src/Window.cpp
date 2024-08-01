@@ -112,6 +112,7 @@ void Window::Setup(const std::string &title, const sf::Vector2u size)
     m_isFocused = true;
     m_eventManager.AddCallback("Fullscreen_toggle", &Window::ToggleFullScreen, this);
     m_eventManager.AddCallback("Window_close", &Window::Close, this);
+    //m_eventManager.AddCallback("test", &sf::Window::close, this);
 
     Create();
 }
